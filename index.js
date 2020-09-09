@@ -37,8 +37,20 @@ const blogSchema = new mongoose.Schema({
 const Blog = mongoose.model('Blog', blogSchema);
 
 // Routes 
+app.get('/', (req, res) => {
+    res.redirect('/blogs');
+});
 app.get('/blogs', (req, res) => {
-    res.render('index');
+    Blog.find({}, (error, blogs) => {
+        if (error) {
+
+            console.log("Some Internal Eroor ");
+
+        } else {
+            res.render('index', { blogs });
+        }
+    });
+
 });
 
 
