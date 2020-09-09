@@ -40,6 +40,7 @@ const Blog = mongoose.model('Blog', blogSchema);
 app.get('/', (req, res) => {
     res.redirect('/blogs');
 });
+// All Blogs
 app.get('/blogs', (req, res) => {
     Blog.find({}, (error, blogs) => {
         if (error) {
@@ -50,8 +51,27 @@ app.get('/blogs', (req, res) => {
             res.render('index', { blogs });
         }
     });
+});
+// New Blog form route 
+app.get('/blogs/new', (req, res) => {
+    res.render('new');
 
 });
+
+// create a post 
+app.post('/blogs', (req, res) => {
+    Blog.create(req.body.blog, (error, blog) => {
+
+        if (error) {
+            res.render("new");
+            console.log("There is Error" + error);
+        } else {
+            res.redirect("/blogs");
+        }
+
+    });
+});
+
 
 
 
