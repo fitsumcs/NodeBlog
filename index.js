@@ -72,6 +72,23 @@ app.post('/blogs', (req, res) => {
     });
 });
 
+//show single blog detail 
+app.get('/blogs/:id', (req, res) => {
+    Blog.findById(req.params.id, (error, blog) => {
+
+        if (error) {
+            res.redirect("/blogs");
+
+        } else {
+            res.render("detail", { blog });
+        }
+
+
+    });
+
+
+
+});
 
 
 
