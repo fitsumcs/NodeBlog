@@ -1,4 +1,5 @@
 const express = require('express');
+const Blog = require('../Models/blogModel');
 
 
 // router 
