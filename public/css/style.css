@@ -9,3 +9,13 @@ i.icon {
 #delForm {
     display: inline;
 }
+
+.dis p {
+    padding: 1rem 0;
+    text-align: justify;
+    line-height: 1.8rem;
+}
+
+#con {
+    margin-top: 1rem;
+}
