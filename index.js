@@ -6,6 +6,7 @@ const expressSanitizer = require('express-sanitizer');
 const blogrouter = require('./routes/blogroutes');
 const authrouter = require('./routes/authroutes');
 const User = require('./Models/userModel');
+const flash = require('connect-flash');
 //auth 
 const passport = require('passport');
 const passportLocal = require('passport-local');
@@ -31,6 +32,9 @@ app.use(expressSanitizer());
 // method override 
 app.use(methodOverride('_method'));
 
+//flash 
+app.use(flash());
+
 // passport config 
 
 app.use(require('express-session')({
@@ -47,6 +51,8 @@ passport.deserializeUser(User.deserializeUser());
 //current user 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash('error');
+    res.locals.success = req.flash('success');
     next();
 });
 
