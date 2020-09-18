@@ -22,7 +22,7 @@ blogrouter.get('/blogs', (req, res) => {
     });
 });
 // New Blog form route 
-blogrouter.get('/blogs/new', (req, res) => {
+blogrouter.get('/blogs/new', isLogged, (req, res) => {
     res.render('new');
 
 });
@@ -59,7 +59,7 @@ blogrouter.get('/blogs/:id', (req, res) => {
 });
 
 // Edit form 
-blogrouter.get('/blogs/:id/edit', (req, res) => {
+blogrouter.get('/blogs/:id/edit', isLogged, (req, res) => {
     Blog.findById(req.params.id, (error, blog) => {
 
         if (error) {
@@ -75,7 +75,7 @@ blogrouter.get('/blogs/:id/edit', (req, res) => {
 });
 
 // update route 
-blogrouter.put('/blogs/:id', (req, res) => {
+blogrouter.put('/blogs/:id', isLogged, (req, res) => {
     req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, (error, blog) => {
         if (error) {
@@ -88,7 +88,7 @@ blogrouter.put('/blogs/:id', (req, res) => {
 });
 
 // delete route 
-blogrouter.delete('/blogs/:id', (req, res) => {
+blogrouter.delete('/blogs/:id', isLogged, (req, res) => {
 
     Blog.findByIdAndRemove(req.params.id, (error) => {
         if (error) {
@@ -101,15 +101,14 @@ blogrouter.delete('/blogs/:id', (req, res) => {
 
 });
 
+//check login
+function isLogged(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
 
 
-
-
-
-
-
-
-
-
+}
 
 module.exports = blogrouter;
