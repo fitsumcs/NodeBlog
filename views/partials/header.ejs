@@ -17,6 +17,7 @@
             <a href="/" class="item">Home</a>
             <% if(!currentUser) {%>
                 <a href="/login" class="item">Login</a>
+                <a href="/register" class="item">Register</a>
                 <%} else{%>
                     <a href="/blogs/new" class="item">New Post</a>
                     <a href="/logout" class="item">Logout</a>
