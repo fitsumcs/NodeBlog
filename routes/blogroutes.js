@@ -31,12 +31,19 @@ blogrouter.get('/blogs/new', isLogged, (req, res) => {
 blogrouter.post('/blogs', (req, res) => {
 
     req.body.blog.body = req.sanitize(req.body.blog.body);
+    const author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    req.body.blog.author = author;
+
     Blog.create(req.body.blog, (error, blog) => {
 
         if (error) {
             res.render("new");
             console.log("There is Error" + error);
         } else {
+            console.log(blog);
             res.redirect("/blogs");
         }
 
