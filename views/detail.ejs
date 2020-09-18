@@ -9,7 +9,8 @@
                 <img class="ui rounded image" src="<%= blog.image%>">
             </div>
             <div class="content" id="con">
-                <span><%= blog.created.toDateString() %></span>
+                <span><em><%= blog.created.toDateString() %></em></span><br>
+                <span>Posted By : <strong><%=  blog.author.username %></strong></span>
             </div>
             <div class="ui fitted divider"></div>
             <div class="description dis">
@@ -18,9 +19,9 @@
                 </p>
             </div>
 
-            <a class="ui red basic button" href="/blogs/<%= blog._id%>/edit">Edit Post</a>
+            <a class="mini ui red basic button" href="/blogs/<%= blog._id%>/edit">Edit Post</a>
             <form id="delForm" action="/blogs/<%= blog._id%>?_method=DELETE" method="POST">
-                <input class="ui red basic button" type="submit" value="Delete Post">
+                <input class="mini ui red basic button" type="submit" value="Delete Post">
             </form>
         </div>
 
