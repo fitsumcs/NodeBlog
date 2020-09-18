@@ -12,7 +12,7 @@ router.post('/register', (req, res) => {
     UserModel.register(newUser, req.body.password, (err, user) => {
         if (err) {
             console.log(err);
-            return res.render('/register');
+            return res.render('register');
         }
         passport.authenticate('local')(req, res, () => {
             res.redirect('/blogs');
