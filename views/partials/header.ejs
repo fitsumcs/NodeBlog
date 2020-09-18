@@ -21,6 +21,10 @@
                 <%} else{%>
                     <a href="/blogs/new" class="item">New Post</a>
                     <a href="/logout" class="item">Logout</a>
+                    <a class="item right floated" href="#">
+                        Sign As
+                        <%= currentUser.username %>
+                    </a>
                     <%}%>
         </div>
 
