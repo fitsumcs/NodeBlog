@@ -12,7 +12,7 @@ blogrouter.get('/', (req, res) => {
 });
 // All Blogs
 blogrouter.get('/blogs', (req, res) => {
-    Blog.find({}, (error, blogs) => {
+    Blog.find().sort({ created: -1 }).exec((error, blogs) => {
         if (error) {
 
             console.log("Some Internal Eroor ");
