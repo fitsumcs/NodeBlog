@@ -1,0 +1,17 @@
+<% if(error && error.length>0){%>
+
+    <div class="ui warning message ">
+        <div class="header " id="my">
+            <%= error %>
+        </div>
+    </div>
+
+    <%}%>
+        <% if(success && success.length>0){%>
+            <div class="ui warning message ">
+                <div class="header ">
+                    <%= success %>
+                </div>
+            </div>
+
+            <%}%>
