@@ -44,7 +44,6 @@ blogrouter.post('/blogs', isLogged, (req, res) => {
             res.render("new");
             console.log("There is Error" + error);
         } else {
-            console.log(blog);
             res.redirect("/blogs");
         }
 
