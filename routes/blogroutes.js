@@ -15,7 +15,7 @@ blogrouter.get('/blogs', (req, res) => {
     Blog.find().sort({ created: -1 }).exec((error, blogs) => {
         if (error) {
 
-            console.log("Some Internal Eroor ");
+            console.log("Some Internal Error ");
 
         } else {
             res.render('index', { blogs });
