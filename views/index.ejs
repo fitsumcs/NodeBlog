@@ -31,7 +31,7 @@
             </div>
 
             <% if ( pages > 1) { %>
-                <div class="ui pagination menu">
+                <div class="ui pagination menu" id="pag">
                     <% if (currentPage == 1 && pages > 1) { %>
 
                         <a class=" item" href="/allblogs/<%= parseInt(currentPage) + 1 %>">

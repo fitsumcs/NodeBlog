@@ -24,6 +24,8 @@ i.icon {
     margin-bottom: 0;
 }
 
-#pag {
+.ui.pagination.menu .item {
     font-size: .7rem;
+    padding-top: 0;
+    padding-bottom: 0;
 }
