@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 const expressSanitizer = require('express-sanitizer');
 const blogrouter = require('./routes/blogroutes');
 const authrouter = require('./routes/authroutes');
+const account = require('./routes/accoutninfo');
 const User = require('./Models/userModel');
 const flash = require('connect-flash');
 //auth 
@@ -58,6 +59,7 @@ app.use((req, res, next) => {
 
 app.use(blogrouter);
 app.use(authrouter);
+app.use('/account', account);
 
 
 app.listen(port, () => { console.log("Server has Started "); });

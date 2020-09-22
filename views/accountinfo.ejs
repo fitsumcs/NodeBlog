@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+
+    <div class="ui main text container segment">
+
+        <div class="ui top attached ">
+            <div class="item">
+                <img class="ui rounded image" src="https://static.thenounproject.com/png/58626-200.png">
+            </div>
+
+            <div class="ui fitted divider"></div>
+            <div class="description dis">
+                <p>
+                    <%= currentUser.firstname%>
+                        <%= currentUser.lastname%>
+                </p>
+            </div>
+
+            <a class="mini ui red basic button" href="/account/<%= currentUser._id%>/edit">Edit Account</a>
+            <form id="delForm" action="/account/<%= currentUser._id%>?_method=DELETE" method="POST">
+                <input class="mini ui red basic button" type="submit" value="Delete Account">
+            </form>
+
+        </div>
+
+
+
+        <p>
+
+        </p>
+    </div>
+
+    <%- include('partials/footer') %>
