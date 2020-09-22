@@ -59,7 +59,7 @@ blogrouter.post('/blogs', isLogged, (req, res) => {
             res.render("new");
             console.log("There is Error" + error);
         } else {
-            res.redirect("/blogs");
+            res.redirect("/");
         }
 
     });
@@ -70,7 +70,7 @@ blogrouter.get('/blogs/:id', (req, res) => {
     Blog.findById(req.params.id, (error, blog) => {
 
         if (error) {
-            res.redirect("/blogs");
+            res.redirect("/");
 
         } else {
             res.render("detail", { blog });
@@ -85,7 +85,7 @@ blogrouter.get('/blogs/:id/edit', checkOwner, (req, res) => {
     Blog.findById(req.params.id, (error, blog) => {
 
         if (error) {
-            res.redirect("/blogs");
+            res.redirect("/");
 
         } else {
             res.render("edit", { blog });
@@ -101,7 +101,7 @@ blogrouter.put('/blogs/:id', checkOwner, (req, res) => {
     req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, (error, blog) => {
         if (error) {
-            res.redirect("/blogs");
+            res.redirect("/");
         } else {
             res.redirect(`/blogs/${req.params.id}`);
         }
@@ -114,9 +114,9 @@ blogrouter.delete('/blogs/:id', isLogged, (req, res) => {
 
     Blog.findByIdAndRemove(req.params.id, (error) => {
         if (error) {
-            res.redirect("/blogs");
+            res.redirect("/");
         } else {
-            res.redirect("/blogs");
+            res.redirect("/");
         }
     });
 
