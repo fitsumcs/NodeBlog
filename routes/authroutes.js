@@ -19,7 +19,7 @@ router.post('/register', (req, res) => {
             return res.redirect('/register');
         }
         passport.authenticate('local')(req, res, () => {
-            res.redirect('/blogs');
+            res.redirect('/');
         });
     });
 });
@@ -29,7 +29,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/blogs',
+    successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
 }), (req, res) => {});
