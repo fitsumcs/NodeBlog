@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="ui fixed inverted menu">
+    <div class="ui fixed  menu">
         <div class="ui container">
             <div class="header item"><i class="code icon"></i> Blog</div>
             <a href="/" class="item">Home</a>
@@ -21,10 +21,15 @@
                 <%} else{%>
                     <a href="/blogs/new" class="item">New Post</a>
                     <a href="/logout" class="item">Logout</a>
-                    <a class="item right floated" href="#">
-                        Sign As
-                        <%= currentUser.username %>
-                    </a>
+                    <div class="ui dropdown right item">
+                        <span class="text">  Sign As
+                            <%= currentUser.username %></span>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a href="/account" class="item">Account Info</a>
+                            <a href="/postbyme" class="item">My Posts</a>
+                        </div>
+                    </div>
                     <%}%>
         </div>
 
