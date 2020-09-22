@@ -21,8 +21,11 @@
                 <%} else{%>
                     <a href="/blogs/new" class="item">New Post</a>
                     <div class="ui dropdown right item">
-                        <span class="text">  Sign As
-                            <%= currentUser.username %></span>
+                        <span class="text">  
+                            <%= currentUser.firstname %> 
+                            <%= currentUser.lastname[0] %>. 
+                            <i class="user circle icon"></i>
+                        </span>
                         <i class="dropdown icon"></i>
                         <div class="menu">
                             <a href="/account" class="item">Account Info</a>
