@@ -32,11 +32,11 @@ account_router.put('/:id', isLogged, (req, res) => {
     });
 
 });
-/*
-// delete route 
-account_router.delete('/blogs/:id', isLogged, (req, res) => {
 
-    Blog.findByIdAndRemove(req.params.id, (error) => {
+// delete route 
+account_router.delete('/:id', isLogged, (req, res) => {
+
+    User.findByIdAndRemove(req.params.id, (error) => {
         if (error) {
             res.redirect("/");
         } else {
@@ -47,5 +47,5 @@ account_router.delete('/blogs/:id', isLogged, (req, res) => {
 
 });
 
-*/
+
 module.exports = account_router;
