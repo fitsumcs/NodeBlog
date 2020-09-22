@@ -1,0 +1,68 @@
+<%- include('partials/header') %>
+
+    <div class="ui main text container">
+        <div class="ui top attached segment">
+            <div class="ui divided items">
+                <% blogs.forEach((blog)=>{%>
+                    <div class="item">
+                        <div class="image">
+                            <img src="<%= blog.image%>">
+                        </div>
+                        <div class="content">
+                            <a class="header" href="/blogs/<%= blog._id%>">
+                                <%= blog.title %>
+                            </a>
+                            <div class="meta">
+                                <span><%= blog.created.toDateString()%></span>
+                                <span>By: <%= blog.author.username%></span>
+                            </div>
+                            <div class="description">
+                                <p>
+                                    <%- blog.body.substring(0,100) %>...
+                                </p>
+                            </div>
+                            <div class="extra">
+                                <a class="ui floated basic violet button" href="/blogs/<%= blog._id%>">Read Mores</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <%}) %>
+            </div>
+
+            <% if ( pages > 1) { %>
+                <div class="ui pagination menu" id="pag">
+                    <% if (currentPage == 1 && pages > 1) { %>
+
+                        <a class=" item" href="/selfblogs//<%= parseInt(currentPage) + 1 %>">
+                            <%=  parseInt(currentPage) + 1 %>
+
+                        </a>
+                        <% } else if (currentPage < pages) { %>
+                            <a class=" item" href="/selfblogs//<%= parseInt(currentPage) - 1 %>">
+
+                                <%= parseInt(currentPage) - 1 %>
+
+                            </a>
+                            <a class=" item" href="/selfblogs//<%= parseInt(currentPage) + 1 %>">
+
+                                <%= parseInt(currentPage) + 1 %>
+                            </a>
+                            <% } else if (currentPage == pages && pages > 1) { %>
+                                <a class=" item" href="/selfblogs//<%= parseInt(currentPage) - 1 %>">
+                                    <%=parseInt(currentPage) - 1 %>
+
+                                </a>
+
+                                <% } %>
+                </div>
+                <% } %>
+
+
+        </div>
+    </div>
+
+
+
+
+    <%- include('partials/footer') %>

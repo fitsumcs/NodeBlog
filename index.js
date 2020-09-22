@@ -6,6 +6,8 @@ const expressSanitizer = require('express-sanitizer');
 const blogrouter = require('./routes/blogroutes');
 const authrouter = require('./routes/authroutes');
 const account = require('./routes/accoutninfo');
+const postbyme = require('./routes/selfPost');
+
 const User = require('./Models/userModel');
 const flash = require('connect-flash');
 //auth 
@@ -60,6 +62,7 @@ app.use((req, res, next) => {
 app.use(blogrouter);
 app.use(authrouter);
 app.use('/account', account);
+app.use('/postbyme', postbyme);
 
 
 app.listen(port, () => { console.log("Server has Started "); });
