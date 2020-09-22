@@ -25,7 +25,7 @@ self_blogrouter.get('/selfblogs/:page', isLogged, async(req, res) => {
         // Count how many products were found
         const numOfUsers = await Blog.countDocuments({ 'author.id': req.user._id });
         // Renders The Page
-        res.render('index', {
+        res.render('postbyme', {
             blogs: blogs,
             currentPage: page,
             pages: Math.ceil(numOfUsers / resPerPage),
