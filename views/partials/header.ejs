@@ -20,7 +20,6 @@
                 <a href="/register" class="item">Register</a>
                 <%} else{%>
                     <a href="/blogs/new" class="item">New Post</a>
-                    <a href="/logout" class="item">Logout</a>
                     <div class="ui dropdown right item">
                         <span class="text">  Sign As
                             <%= currentUser.username %></span>
@@ -28,6 +27,7 @@
                         <div class="menu">
                             <a href="/account" class="item">Account Info</a>
                             <a href="/postbyme" class="item">My Posts</a>
+                            <a href="/logout" class="item">Logout</a>
                         </div>
                     </div>
                     <%}%>
