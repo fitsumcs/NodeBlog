@@ -8,19 +8,34 @@ const blogrouter = new express.Router();
 
 // Routes 
 blogrouter.get('/', (req, res) => {
-    res.redirect('/blogs');
+    res.redirect('/allblogs/1');
 });
 // All Blogs
-blogrouter.get('/blogs', (req, res) => {
-    Blog.find().sort({ created: -1 }).exec((error, blogs) => {
-        if (error) {
+blogrouter.get('/allblogs/:page', async(req, res) => {
+    const resPerPage = 4; // results per page
+    const page = req.params.page || 1; // Page
+    try {
 
-            console.log("Some Internal Error ");
 
-        } else {
-            res.render('index', { blogs });
-        }
-    });
+        // Find Demanded Products - Skipping page values, limit results per page
+        const blogs = await Blog.find()
+            .sort({ created: -1 })
+            .skip((resPerPage * page) - resPerPage)
+            .limit(resPerPage);
+        // Count how many products were found
+        const numOfUsers = await Blog.countDocuments();
+        // Renders The Page
+        res.render('index', {
+            blogs: blogs,
+            currentPage: page,
+            pages: Math.ceil(numOfUsers / resPerPage),
+            numOfResults: numOfUsers
+        });
+
+    } catch (err) {
+        console.log("Some Internal Error " + err);
+    }
+
 });
 // New Blog form route 
 blogrouter.get('/blogs/new', isLogged, (req, res) => {

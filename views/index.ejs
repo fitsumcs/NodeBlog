@@ -29,6 +29,32 @@
 
                     <%}) %>
             </div>
+            <div class="ui pagination menu">
+
+
+                <% if (currentPage == 1 && pages > 1) { %>
+                    <a class=" item" href="/allblogs/<%= parseInt(currentPage) + 1 %>">
+                        <%=  parseInt(currentPage) + 1 %>
+
+                    </a>
+                    <% } else if (currentPage < pages) { %>
+                        <a class=" item" href="/allblogs/<%= parseInt(currentPage) - 1 %>">
+
+                            <%= parseInt(currentPage) - 1 %>
+
+                        </a>
+                        <a class=" item" href="/allblogs/<%= parseInt(currentPage) + 1 %>">
+
+                            <%= parseInt(currentPage) + 1 %>
+                        </a>
+                        <% } else if (currentPage == pages && pages > 1) { %>
+                            <a class=" item" href="/allblogs/<%= parseInt(currentPage) - 1 %>">
+                                <%=parseInt(currentPage) - 1 %>
+
+                            </a>
+                            <% } %>
+
+            </div>
         </div>
     </div>
 
