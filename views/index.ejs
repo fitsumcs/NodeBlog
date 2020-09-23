@@ -14,7 +14,7 @@
                             </a>
                             <div class="meta">
                                 <span><%= blog.created.toDateString()%></span>
-                                <span>By: <%= blog.author.username%></span>
+                                <span>By: <a href="/blogs/user/<%= blog.author.username%>/1"><%= blog.author.username%></a></span>
                             </div>
                             <div class="description">
                                 <p>

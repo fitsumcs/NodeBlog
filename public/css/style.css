@@ -27,3 +27,7 @@ i.icon {
 .pag {
     font-size: 1.15rem;
 }
+
+.ui.items>.item>.image>img {
+    height: 11rem;
+}

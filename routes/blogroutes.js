@@ -37,6 +37,34 @@ blogrouter.get('/allblogs/:page', async(req, res) => {
     }
 
 });
+// All Blogs by specific user
+blogrouter.get('/blogs/user/:username/:page', async(req, res) => {
+    const resPerPage = 4; // results per page
+    const page = req.params.page || 1; // Page
+    try {
+
+
+        // Find Demanded Products - Skipping page values, limit results per page
+        const blogs = await Blog.find({ 'author.username': req.params.username })
+            .sort({ created: -1 })
+            .skip((resPerPage * page) - resPerPage)
+            .limit(resPerPage);
+        // Count how many products were found
+        const numOfUsers = await Blog.countDocuments({ 'author.username': req.params.username });
+        // Renders The Page
+        res.render('index', {
+            blogs: blogs,
+            currentPage: page,
+            pages: Math.ceil(numOfUsers / resPerPage),
+            numOfResults: numOfUsers
+        });
+
+    } catch (err) {
+        console.log("Some Internal Error " + err);
+    }
+
+});
+
 // New Blog form route 
 blogrouter.get('/blogs/new', isLogged, (req, res) => {
     res.render('new');
