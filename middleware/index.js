@@ -1,4 +1,5 @@
 const Blog = require('../Models/blogModel');
+const requestImageSize = require('request-image-size');
 // exported var 
 const middleware = {};
 //functions 
@@ -37,6 +38,34 @@ middleware.isLogged = function(req, res, next) {
     req.flash("error", "Please Login!");
     res.redirect('/login');
 };
+middleware.check_image = async(req, res, next) => {
+    try {
+        const imageurl = await requestImageSize(req.body.blog.image);
+        if (imageurl && imageurl.type === 'svg') {
+            req.flash("error", "The Url Has No Image");
+            if (req.url === '/blogs') {
+                return res.redirect('/blogs/new');
+            }
+
+            res.redirect('/blogs/' + req.params.id + '/edit');
+        }
+        next();
+
+    } catch (error) {
+
+        req.flash("error", "The Url Has No Image");
+        if (req.url === '/blogs') {
+            return res.redirect('/blogs/new');
+        }
+
+        res.redirect('/blogs/' + req.params.id + '/edit');
+
+
+    }
+};
+
+
+
 
 
 module.exports = middleware;

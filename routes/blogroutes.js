@@ -1,6 +1,6 @@
 const express = require('express');
 const Blog = require('../Models/blogModel');
-const { isLogged, checkOwner } = require('../middleware');
+const { isLogged, checkOwner, check_image } = require('../middleware');
 
 
 // router 
@@ -44,7 +44,7 @@ blogrouter.get('/blogs/new', isLogged, (req, res) => {
 });
 
 // create a post 
-blogrouter.post('/blogs', isLogged, (req, res) => {
+blogrouter.post('/blogs', isLogged, check_image, (req, res) => {
 
     req.body.blog.body = req.sanitize(req.body.blog.body);
     const author = {
@@ -97,7 +97,7 @@ blogrouter.get('/blogs/:id/edit', checkOwner, (req, res) => {
 });
 
 // update route 
-blogrouter.put('/blogs/:id', checkOwner, (req, res) => {
+blogrouter.put('/blogs/:id', checkOwner, check_image, (req, res) => {
     req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, (error, blog) => {
         if (error) {
