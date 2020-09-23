@@ -34,9 +34,9 @@
                 <% for (var i =1; i <=pages;  i++ ) { %>
 
                     <% if(i===parseInt(currentPage)) {%>
-                        <span><%=  parseInt(currentPage) %></span>
+                        <span class="pag"><%=  parseInt(currentPage) %></span>
                         <% } else{%>
-                            <a href="/allblogs/<%= i %>">
+                            <a class="pag" href="/allblogs/<%= i %>">
                                 <%= i %>
                             </a>
                             <% } %>
